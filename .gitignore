@@ -1,0 +1,22 @@
+# ── Global ────────────────────────────────────────────────────────────────────
+__pycache__/
+*.pyc
+*.log
+*.ckpt
+
+# ── server/ (personal working history for the public-repo cleanup, 2026-08-06:
+# everything currently in the tree quarantined here, never tracked; clean
+# scripts meant for the public repo are added fresh outside this folder) ──────
+server/
+
+# ── dotfolders (tooling/config, not project content — e.g. .claude, .vscode,
+# .idea, .ipynb_checkpoints) — excluded anywhere in the tree, not just root.
+# NOTE: .claude/agents/cas-colon.md and .claude/settings.json were already
+# tracked before this rule; gitignore only stops NEW files, so those two were
+# untracked separately with `git rm --cached` (see repo cleanup, 2026-08-06).
+.*/
+
+# ── docs ──────────────────────────────────────────────────────────────────────
+docs/*
+!docs/libraries.md
+!docs/data.md
