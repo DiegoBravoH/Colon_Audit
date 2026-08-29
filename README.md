@@ -52,6 +52,10 @@ Colonoscopy is the gold standard for colorectal cancer screening. The procedure 
 
 <img src="figures/fig2.jpg" alt="Example Colon-Audit predictions for a complete colonoscopy procedure" width="700">
 
+## Pretrained Models
+
+📥 **[Download the trained checkpoints](docs/models.md)** — both the "Single-frame" and "Multi-frame" (+HMM) models from Table 1, for the 5-fold and 4-fold protocols.
+
 ## Dataset
 
 Experiments were conducted on the public **REAL-Colon** dataset: 60 fully annotated colonoscopy procedures (∼2.7 million frames) from six medical centers across three continents, following the official 5-fold and cross-center 4-fold evaluation protocols. See [docs/data.md](docs/data.md) for download and preparation instructions.
@@ -66,9 +70,9 @@ pip install -r requirements.txt
 
 See [docs/libraries.md](docs/libraries.md) for the full environment setup (Python/CUDA version, exact package versions).
 
-## Code and Pretrained Models
+## Code
 
-**Trained models are released now** — see [docs/models.md](docs/models.md) for download links (both the "Single-frame" and "Multi-frame" checkpoints from Table 1). **The training/testing code is embargoed until the paper is accepted.** The docs below describe what that code does and how it's used ahead of its release, so the pipeline is fully documented even while `classification/` itself isn't public yet.
+**The training/testing code is embargoed until the paper is accepted.** The docs below describe what that code does and how it's used ahead of its release, so the pipeline is fully documented even while `classification/` itself isn't public yet.
 
 The pipeline runs in three stages:
 
