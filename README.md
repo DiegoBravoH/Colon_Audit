@@ -66,6 +66,24 @@ pip install -r requirements.txt
 
 See [docs/libraries.md](docs/libraries.md) for the full environment setup (Python/CUDA version, exact package versions).
 
+## Code and Pretrained Models
+
+**Trained models are released now** — see [docs/models.md](docs/models.md) for download links (both the "Single-frame" and "Multi-frame" checkpoints from Table 1). **The training/testing code is embargoed until the paper is accepted.** The docs below describe what that code does and how it's used ahead of its release, so the pipeline is fully documented even while `classification/` itself isn't public yet.
+
+The pipeline runs in three stages:
+
+1. **[`features/`](features/)** — encodes every video frame through the frozen ViT-Small (GastroNet-5M) backbone into 384-dim embeddings. Published now. Documented in [docs/features.md](docs/features.md).
+2. **`classification/single_frame/`** — the "Single-frame" baseline: a linear probe on the frozen embeddings, no temporal context. Documented in [docs/classification.md](docs/classification.md).
+3. **`classification/multi_frame/`** — the "Multi-frame" / "Multi-frame+HMM" main method: the temporal ViT-Small model over sliding windows, with optional HMM smoothing. Documented in [docs/multi_frame.md](docs/multi_frame.md).
+
+Both `classification/` pipelines consume the embeddings `features/` produces; `single_frame/` and `multi_frame/` are otherwise independent of each other.
+
+## Notebooks
+
+`colon_audit_demo.ipynb` runs the full inference pipeline (feature extraction → multi-frame classification → HMM smoothing) on a sample colonoscopy clip, downloading the pretrained weights automatically — no local setup needed.
+
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1mHWefgWQia8MSYGo3VMCQS6n-Sd01bfh)
+
 ## Citation
 
 The dataset this work builds on:

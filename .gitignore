@@ -9,14 +9,35 @@ __pycache__/
 # scripts meant for the public repo are added fresh outside this folder) ──────
 server/
 
-# ── dotfolders (tooling/config, not project content — e.g. .claude, .vscode,
-# .idea, .ipynb_checkpoints) — excluded anywhere in the tree, not just root.
-# NOTE: .claude/agents/cas-colon.md and .claude/settings.json were already
-# tracked before this rule; gitignore only stops NEW files, so those two were
-# untracked separately with `git rm --cached` (see repo cleanup, 2026-08-06).
+# ── dotfolders (tooling/config, not project content — e.g. .vscode, .idea,
+# .ipynb_checkpoints) — excluded anywhere in the tree, not just root. A couple
+# of files under a dotfolder were already tracked before this rule; gitignore
+# only stops NEW files, so those were untracked separately with
+# `git rm --cached` (see repo cleanup, 2026-08-06).
 .*/
 
 # ── docs ──────────────────────────────────────────────────────────────────────
 docs/*
 !docs/libraries.md
 !docs/data.md
+!docs/features.md
+!docs/classification.md
+!docs/multi_frame.md
+!docs/models.md
+
+# ── classification/ (training/testing CODE embargoed until paper acceptance,
+# 2026-08-15: trained weights are shared now via docs/models.md's download
+# links, but the code that produced them is not published yet -- docs/ stays
+# fully visible, describing the pipeline ahead of the code itself) ───────────
+classification/
+
+# ── notebooks/ (Colab demo working folder, 2026-08-29: the notebook itself is
+# distributed via its own Colab/Drive link (see README's "Notebooks" section),
+# not through this repo -- and this folder locally holds the big files it
+# downloads for testing (weights, video, checkpoint), which don't belong in
+# git either way) ──────────────────────────────────────────────────────────
+notebooks/
+
+# ── report-results/ (personal analysis notebooks, not part of the published
+# pipeline) ──────────────────────────────────────────────────────────────────
+report-results/
