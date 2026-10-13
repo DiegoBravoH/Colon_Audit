@@ -35,6 +35,7 @@ This installs, among others:
 | timm | 1.0.22 |
 | torchmetrics | 1.6.0 |
 | scikit-learn | 1.5.2 |
+| matplotlib | 3.9.2 |
 | pandas | 2.2.2 |
 | numpy | 1.26.4 |
 | tqdm | 4.67.1 |

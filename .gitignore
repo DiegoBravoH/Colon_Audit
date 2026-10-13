@@ -41,3 +41,8 @@ notebooks/
 # ── report-results/ (personal analysis notebooks, not part of the published
 # pipeline) ──────────────────────────────────────────────────────────────────
 report-results/
+
+# ── Guide_experiment.txt (personal run notes with local NAS paths, kept next
+# to the code they run but never published -- public usage lives in each
+# script's docstring) ─────────────────────────────────────────────────────────
+Guide_experiment.txt
