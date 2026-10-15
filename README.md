@@ -40,7 +40,7 @@ Colonoscopy is the gold standard for colorectal cancer screening. The procedure 
 | Macro F1 | 58.9 | 63.9 | 64.3 | 63.5 | **64.6** | 61.7 | 62.7 | 62.5 |
 | Weighted F1 | 59.0 | 64.9 | 66.4 | 67.0 | 68.1 | 67.4 | **68.9** | 68.5 |
 | wF1+HMM | 61.0 | 66.4 | 68.2 | 68.3 | 69.6 | 69.0 | **71.2** | 70.9 |
-| Latency (ms) | 156.8 | 165.1 | 159.4 | 162.0 | 157.4 | 172.9 | 172.8 | 170.7 |
+| Latency (ms) | 22.8 | 21.4 | 24.7 | 22.9 | 23.9 | 28.9 | 31.2 | 41.2 |
 
 *5-fold REAL-Colon — mix center*
 
