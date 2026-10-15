@@ -6,11 +6,11 @@ Official code for **"Automated Colon-Audit: Temporal Modeling of Colonoscopy"** 
 
 ## Abstract
 
-Colonoscopy is the gold standard for colorectal cancer screening. The procedure quality determines adenoma detection rate and clinical outcomes. Key quality indicators, including cecal intubation and withdrawal time, require accurate assessment but they are not routinely quantified during clinical practice. Existing automated approaches rely on single-frame, short temporal windows or offline analysis to provide procedural auditing. Instead, this paper introduces Colon-Audit, a Transformer-based framework for real-time colonoscopy auditing. The proposed method leverages endoscopy-specific visual embeddings and a Vision Transformer to capture temporal dependencies, enabling sequence-level classification. We evaluate the proposed approach on 60 colonoscopy procedures comprising ∼2.7 million frames. Under the standard 5-fold evaluation protocol, Colon-Audit achieves a weighted F1-score of 74.1%, increasing to 76.2% after temporal post-processing. Under the more challenging cross-center 4-fold protocol, the proposed framework achieves a weighted F1-score of 68.9%, further improved to 71.2% with temporal post-processing. These results demonstrate the potential of long-range temporal modeling for real-time procedural auditing in routine colonoscopy.
+Colonoscopy is the gold standard for colorectal cancer screening. The procedure quality determines adenoma detection rate and clinical outcomes. Key quality indicators, including cecal intubation and withdrawal time, require accurate assessment but they are not routinely quantified during clinical practice. Existing automated approaches rely on single-frame, short temporal windows or offline analysis to provide procedural auditing. Instead, this paper introduces Colon-Audit, a Transformer-based framework for real-time colonoscopy auditing. The proposed method leverages endoscopy-specific visual embeddings and a Vision Transformer to capture temporal dependencies, enabling sequence-level classification. We evaluate the proposed approach on 60 full-length colonoscopy procedures. Under the standard 5-fold evaluation protocol, Colon-Audit achieves a weighted F1-score of 74.1%, increasing to 76.2% after temporal post-processing. Under the more challenging cross-center 4-fold protocol, the proposed framework achieves a weighted F1-score of 68.9%, further improved to 71.2% with temporal post-processing. These results demonstrate the potential of long-range temporal modeling for real-time procedural auditing in routine colonoscopy.
 
 ## Anatomical Classification
 
-**Table 1.** Comparison of the proposed Colon-Audit framework against baseline architectures on the REAL-Colon dataset. F1-score per anatomical class, plus weighted F1-score (wF1) and weighted Jaccard index (wJacc), evaluated on 60 complete colonoscopy procedures (∼2.7M frames).
+**Table 1.** Comparison of the proposed Colon-Audit framework against baseline architectures on the REAL-Colon dataset. F1-score per anatomical class, plus weighted F1-score (wF1) and weighted Jaccard index (wJacc), evaluated on 60 full-length colonoscopy procedures (507,651 frames at 5 fps).
 
 *4-fold REAL-Colon — validate on different centers*
 
@@ -58,6 +58,14 @@ Colonoscopy is the gold standard for colorectal cancer screening. The procedure 
 |---|---|
 | ![5-fold confusion matrices](figures/confusion_matrix_5fold.png) | ![Cross-center 4-fold confusion matrices](figures/confusion_matrix_4fold.png) |
 
+**Withdrawal-time error (WMAPE, %, lower is better).** Mean absolute percentage error between actual and predicted withdrawal frames (cecum through rectum) per video, averaged over the 60 videos (588 tokens). Colon-Audit matches ColonTCN under the cross-center protocol but remains higher under 5-fold. Computed by [`evaluation/wmape.py`](evaluation/wmape.py) from the released test predictions.
+
+| Model | 4-fold | 5-fold |
+|---|---|---|
+| Multi-frame | 17.1 | 9.1 |
+| Multi-frame+HMM | 16.8 | 8.6 |
+| Biffi (2025) [ColonTCN] | 16.8 | 3.1 |
+
 ## Pretrained Models
 
 📥 **[Download the trained checkpoints](docs/models.md)** — both the "Single-frame" and "Multi-frame" (+HMM) models from Table 1, for the 5-fold and 4-fold protocols.
@@ -88,7 +96,7 @@ The pipeline runs in three stages:
 
 Both `classification/` pipelines consume the embeddings `features/` produces; `single_frame/` and `multi_frame/` are otherwise independent of each other.
 
-**[`evaluation/`](evaluation/)** — post-hoc analysis that needs only the released test predictions (see [docs/models.md](docs/models.md)), not the embargoed code. Published now. `confusion_matrix.py` reproduces the confusion matrices above; usage is in its docstring.
+**[`evaluation/`](evaluation/)** — post-hoc analysis that needs only the released test predictions (see [docs/models.md](docs/models.md)), not the embargoed code. Published now. `confusion_matrix.py` reproduces the confusion matrices above and `wmape.py` the withdrawal-time WMAPE; usage is in each script's docstring.
 
 ## Notebooks
 
